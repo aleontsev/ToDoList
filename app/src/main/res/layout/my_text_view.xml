@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/lightGreen">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <!--<TASK TITLE-->
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="?android:listPreferredItemPaddingLeft"
+            android:paddingRight="?android:listPreferredItemPaddingRight"
+            android:textColor="#000000"
+            android:textSize="@dimen/label_size"
+
+            tools:text="Title"/>
+
+        <!--<Status Complete Incomplete-->
+        <TextView
+            android:id="@+id/StatusLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_size"
+            android:paddingLeft="?android:listPreferredItemPaddingLeft"
+            android:paddingRight="?android:listPreferredItemPaddingRight"
+            android:text="@string/done_string"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
+            android:layout_below="@+id/titleView"
+            android:layout_alignParentStart="true">
+        </TextView>
+
+        <CheckBox
+            android:id="@+id/statusCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:layout_below="@+id/titleView"
+            android:layout_toEndOf="@+id/StatusLabel">
+        </CheckBox>
+
+        <!--<Deadline Date-->
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/StatusLabel"
+            android:layout_toRightOf="@+id/statusCheckBox"
+            android:textColor="#000000"
+            android:layout_margin="10dp"
+            android:textSize="@dimen/label_size"
+            tools:text="0000-00-00">
+        </TextView>
+
+
+    </RelativeLayout>
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/statusCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginTop="52dp"-->
+        <!--android:layout_toRightOf="@+id/StatusLabel"-->
+        <!--android:textColor="#000000">-->
+    <!--</CheckBox>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/PriorityLabel"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/statusCheckBox"-->
+        <!--android:layout_alignTop="@+id/StatusLabel"-->
+        <!--android:layout_toLeftOf="@+id/priorityView"-->
+        <!--android:text="@string/priority_string"-->
+        <!--android:textColor="#000000">-->
+    <!--</TextView>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/priorityView"-->
+        <!--android:layout_width="50dip"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/statusCheckBox"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignTop="@+id/StatusLabel"-->
+        <!--android:textColor="#000000">-->
+    <!--</TextView>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/DateLabel"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_below="@+id/statusCheckBox"-->
+        <!--android:text="@string/date_string"-->
+        <!--android:textColor="#000000">-->
+    <!--</TextView>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/dateView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/DateLabel"-->
+        <!--android:layout_toRightOf="@+id/DateLabel"-->
+        <!--android:textColor="#000000">-->
+    <!--</TextView>-->
+
+
+</android.support.v7.widget.CardView>
