@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="startup.todolist.ToDoMain"
+    tools:context=".ToDoMain"
     tools:showIn="@layout/activity_to_do_main">
     <!-- A RecyclerView with some commonly used attributes -->
     <android.support.v7.widget.RecyclerView

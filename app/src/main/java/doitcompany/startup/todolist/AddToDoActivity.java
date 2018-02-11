@@ -1,9 +1,8 @@
-package startup.todolist;
+package doitcompany.startup.todolist;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -13,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -40,16 +37,11 @@ public class   AddToDoActivity extends AppCompatActivity {
     private CheckBox mStatusCheckBox;
     private EditText mTitleText;
     private EditText mDescriptionText;
-    private RadioButton mDefaultStatusButton;
     private RadioButton mDefaultPriorityButton;
 
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        //exception handler
-        //Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
-
         setContentView(R.layout.add_todo);
         //Set action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_add_todo);
@@ -58,15 +50,11 @@ public class   AddToDoActivity extends AppCompatActivity {
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        // Enable the Up button
-        //ab.setDisplayHomeAsUpEnabled(true);
-
         mTitleText       = (EditText) findViewById(R.id.title);
         mDescriptionText = (EditText) findViewById(R.id.description);
         mStatusCheckBox  = (CheckBox) findViewById(R.id.completeCheckBox);
         dateView         = (TextView) findViewById(R.id.date);
         timeView         = (TextView) findViewById(R.id.time);
-
 
         // Set the default date and time
         setDefaultDateTime();
@@ -107,10 +95,6 @@ public class   AddToDoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // gather ToDoItem data
-                // Get the current Priority
-                //Priority priority = getPriority();
-
                 //Get the current Status
                 Boolean status = getStatus();
 
@@ -148,7 +132,6 @@ public class   AddToDoActivity extends AppCompatActivity {
     }
 
     private String getToDoDescription(){return mDescriptionText.getText().toString();}
-
 
     private void setDefaultDateTime() {
 
