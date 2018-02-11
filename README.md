@@ -1,9 +1,9 @@
 # ToDoList
 
-Open-source project
-Let's make it better
-Simple ToDO List
-Link on [GooglePlay](https://play.google.com/store/apps/details?id=new.startup.todolist)
+## Open-source project
+## Let's make it better
+## Simple ToDO List
+## Link on [GooglePlay](https://play.google.com/store/apps/details?id=new.startup.todolist)
 
 <img src="https://user-images.githubusercontent.com/15144425/36074939-1fa340ce-0f58-11e8-8847-8dc16e9fb334.jpg" width="400">
 <img src="https://user-images.githubusercontent.com/15144425/36074989-cbb8b8f8-0f58-11e8-8a81-c0befe3bad50.png" width="400">
