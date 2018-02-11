@@ -1,4 +1,4 @@
-package startup.todolist;
+package doitcompany.startup.todolist;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
-import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +15,6 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -24,11 +22,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.support.v4.app.DialogFragment;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -39,22 +32,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import doitcompany.startup.todolist.AddToDoActivity;
+import doitcompany.startup.todolist.DatabaseOpenHelper;
+import doitcompany.startup.todolist.MyAdapter;
+import doitcompany.startup.todolist.ToDoItem;
+
 
 public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private AdView mAdView;
 
     private RecyclerView               mRecyclerView;
-    private MyAdapter                  mAdapter;
+    private MyAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Context mContext = this;
     private ToDoItem mCurrentItem;
     private int mPosition;
     private Date     mDeadLineDate   = new Date();
     private final String Log_TAG = "LogMe";
-
-    private CardView mCardViewTop;
-    private CardView mCardViewBottom;
 
     //Item list
     private ArrayList<ToDoItem> mItems = new ArrayList<ToDoItem>();
@@ -66,11 +61,9 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
 
     //Create database object
     DatabaseOpenHelper myDB;
-    SQLiteDatabase db;
 
     //Create adapter for database query
     private RecyclerView.Adapter databaseAdapter;
-
 
     //Creating Main Menu Items+
     @Override
@@ -87,7 +80,6 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
         searchView.setOnQueryTextListener(this);
         // Configure the search info and add any event listeners
         return super.onCreateOptionsMenu(menu);
-
     }
     //Creating Main Menu Items-
 
@@ -104,7 +96,6 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
             mAdView.pause();
         }
         //ad block-
-
     }
 
     //Actions on selected menu items+
@@ -137,9 +128,11 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
 
                     //delete completed tasks
                     public void onClick(DialogInterface dialog, int id) {
+                        mItems = mAdapter.getTasksFromDB(mContext);
                         for (int i=0;i<mItems.size();i++){
-                            if (mItems.get(i).getStatus())
-                                mItems.remove(mItems.get(i));
+                            if (mItems.get(i).getStatus()) {
+                                mAdapter.remove(mItems.get(i));
+                            }
                         }
                         mAdapter.notifyDataSetChanged();
                         //delete completed tasks
@@ -213,9 +206,6 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
 
         super.onCreate(savedInstanceState);
 
-        //exception handler
-        //Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
-
         if (savedInstanceState!=null){
             mItems  = savedInstanceState.getParcelableArrayList("MineKey");
         }
@@ -235,21 +225,17 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         FloatingActionButton addButton = (FloatingActionButton)findViewById(R.id.fab);
-        //TextView mTitleView    = (TextView) findViewById(R.id.titleView);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setHasFixedSize(true);
-
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(mItems, mContext);
+        // specify an adapter
+        mAdapter = new MyAdapter(mContext);
         mRecyclerView.setAdapter(mAdapter);
-
 
         //Attach listener to addButton
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -283,9 +269,8 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
 
             }
             if (requestCode == EDIT_TODO_ITEM_REQUEST ) {
-                // i need to find element and modify it.
-               // mAdapter.getItem()
 
+                //find element and modify it.
                 mPosition       = data.getIntExtra(ToDoItem.POSITION, 0);
                 mCurrentItem = (ToDoItem)mAdapter.getItem(mPosition);
                 Boolean mDelete         = data.getBooleanExtra(ToDoItem.DELETE,false);
@@ -306,8 +291,6 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
                     }
 
                     mAdapter.modifyItem(mCurrentItem, mTitle, mDescription, mCompleteStatus, mDeadLineDate);
-
-
                 }
 
             }

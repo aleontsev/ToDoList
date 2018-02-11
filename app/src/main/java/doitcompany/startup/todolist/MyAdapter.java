@@ -1,11 +1,10 @@
-package startup.todolist;
+package doitcompany.startup.todolist;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,18 +15,11 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
-import android.widget.CursorAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Context;
-import android.widget.Toast;
 import android.support.v7.app.AppCompatActivity;
-
-
-import org.greenrobot.eventbus.EventBus;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -35,15 +27,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-
-import static android.support.v4.app.ActivityCompat.*;
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 import android.database.Cursor;
-import android.database.DataSetObserver;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implements Filterable {
 
@@ -61,24 +46,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
     private Activity mActivity;
     int currentItemPosition = 0;
 
-    // Constructor using context
-    public MyAdapter(Context context) {
-        mContext = context;
-    }
 
-    // Constructor using DataSet Context
-//    public MyAdapter(ArrayList<ToDoItem>  myDataset, Context context) {
-//        this.mItems = myDataset;
-//        this.mContext = context;
-//    }
 
     // Constructor using Context + cursor
-    public MyAdapter(ArrayList<ToDoItem>  myDataset, Context context) {
-        this.mItems = getTasksFromDB(context, myDataset);
+    public MyAdapter(Context context) {
+        this.mItems = getTasksFromDB(context);
         this.mContext = context;//
     }
 
-    private ArrayList<ToDoItem> getTasksFromDB(Context context, ArrayList<ToDoItem>  myDataset) {
+    public ArrayList<ToDoItem> getTasksFromDB(Context context) {
 
         ArrayList<ToDoItem> mTasks = new ArrayList<ToDoItem>();
         myDB = new DatabaseOpenHelper(context);
@@ -216,12 +192,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                 if ( isChecked ){
 
                     toDoItem.setStatus(true);
+                    modifyItem(toDoItem, toDoItem.getTitle(), toDoItem.getDescription(), true, toDoItem.getDeadLineDate());
                     holder.mCardView.setBackgroundColor(Color.parseColor("#B5B4B4"));
 
                 }
                 else {
 
                     toDoItem.setStatus(false);
+                    modifyItem(toDoItem, toDoItem.getTitle(), toDoItem.getDescription(), false, toDoItem.getDeadLineDate());
                     holder.mCardView.setBackgroundColor(Color.parseColor("#DCEDC8"));
 
                 }
@@ -243,11 +221,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
                 mIntent.putExtra(ToDoItem.class.getCanonicalName(), toDoItem);
                 int currentItemPosition = mItems.indexOf(toDoItem);
                 mIntent.putExtra(ToDoItem.POSITION, currentItemPosition);
-                //mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                //post toDoItem for edit activity
-                EventBus.getDefault().post(toDoItem);
                 ((AppCompatActivity)mContext).startActivityForResult(mIntent, ToDoMain.EDIT_TODO_ITEM_REQUEST);
-
 
             }
         });
@@ -349,7 +323,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> implem
 
         db.close();
 
-        mItems.remove(item);
+        mItems = getTasksFromDB(mContext);
         notifyDataSetChanged();
     }
 

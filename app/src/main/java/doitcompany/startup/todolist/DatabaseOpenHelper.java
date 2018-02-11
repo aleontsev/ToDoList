@@ -1,4 +1,4 @@
-package startup.todolist;
+package doitcompany.startup.todolist;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

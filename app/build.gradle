@@ -5,11 +5,11 @@ android {
     compileSdkVersion 27
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "new.startup.todolist"
-        minSdkVersion 14
+        applicationId "doitcompany.startup.todolist"
+        minSdkVersion 21
         targetSdkVersion 27
-        versionCode 3
-        versionName "0.0.3"
+        versionCode 4
+        versionName "0.0.4"
     }
     buildTypes {
         release {
@@ -26,11 +26,10 @@ dependencies {
     compile 'com.android.support:design:27.0.0'
     compile 'com.android.support:appcompat-v7:27.0.0'
     compile 'com.android.support:support-v4:27.0.0'
-    compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.google.android.gms:play-services-ads:11.4.2'
     compile 'com.google.firebase:firebase-ads:11.4.2'
     testCompile 'junit:junit:4.12'
 }
 
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'

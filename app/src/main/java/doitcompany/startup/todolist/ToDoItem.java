@@ -1,17 +1,14 @@
-package startup.todolist;
+package doitcompany.startup.todolist;
 
 import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Date;
 import java.text.ParseException;
-/**
- * Created by Lenovo on 15.05.2016.
- */
+
 //implements Parcelable interface to parcel object using intent
 public class ToDoItem implements Parcelable {
 
@@ -26,7 +23,6 @@ public class ToDoItem implements Parcelable {
             "yyyy-MM-dd hh:mm", Locale.US);
     public final static SimpleDateFormat FORMAT1 = new SimpleDateFormat(
             "yyyy-MM-dd", Locale.US);
-
 
     public enum Priority {
         LOW, MED, HIGH
@@ -112,8 +108,6 @@ public class ToDoItem implements Parcelable {
     }
 
 
-
-
     public String getTitle(){
         return mTitle;
     }
@@ -181,8 +175,6 @@ public class ToDoItem implements Parcelable {
    public void setAlarmMe(Boolean alarmMe){
        mAlarmMe = alarmMe;
    }
-
-
 
     // Take a set of String data values and
     // package them for transport in an Intent

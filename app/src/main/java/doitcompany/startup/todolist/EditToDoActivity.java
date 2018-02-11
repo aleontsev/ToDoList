@@ -1,4 +1,4 @@
-package startup.todolist;
+package doitcompany.startup.todolist;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -17,15 +17,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
 
 public class EditToDoActivity extends AppCompatActivity {
 
@@ -52,21 +49,14 @@ public class EditToDoActivity extends AppCompatActivity {
     private static TextView dateView;
     private static TextView timeView;
 
-
-
     //for formatting data and time
     public final static SimpleDateFormat FORMAT = new SimpleDateFormat(
             "EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
 
-        //exception handler
-        //Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.edit_todo);
 
@@ -85,27 +75,23 @@ public class EditToDoActivity extends AppCompatActivity {
         mItem            = mIntent.getParcelableExtra(ToDoItem.class.getCanonicalName());
         mPosition        = mIntent.getIntExtra(ToDoItem.POSITION, 0);
 
-
         try {
             mDeadLineDate = FORMAT.parse(mIntent.getStringExtra(ToDoItem.DATE));
         } catch (ParseException e) {
             mDeadLineDate = new Date();
         }
 
-
-        mEditTitle        = (EditText)findViewById(R.id.title);
-        mEditDescription  = (EditText)findViewById(R.id.description);
-        mCheckBoxStatus   = (CheckBox)findViewById(R.id.completeCheckBox);
-        dateView         = (TextView) findViewById(R.id.date);
-        timeView         = (TextView) findViewById(R.id.time);
-
+        mEditTitle        = findViewById(R.id.title);
+        mEditDescription  = findViewById(R.id.description);
+        mCheckBoxStatus   = findViewById(R.id.completeCheckBox);
+        dateView         =  findViewById(R.id.date);
+        timeView         =  findViewById(R.id.time);
 
         mEditTitle.setText(mTitle);
         mEditDescription.setText(mDescription);
         mCheckBoxStatus.setChecked(mCompleteStatus);
         if (mDeadLineDate !=null){
             setDate(mDeadLineDate);}
-
 
         // OnClickListener for the Date button, calls showDatePickerDialog() to
         // show the Date dialog
@@ -120,7 +106,6 @@ public class EditToDoActivity extends AppCompatActivity {
 
         // OnClickListener for the Time button, calls showTimePickerDialog() to
         // show the Time Dialog
-
         final Button timePickerButton = (Button) findViewById(R.id.time_picker);
         timePickerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -129,8 +114,6 @@ public class EditToDoActivity extends AppCompatActivity {
                 showTimePickerDialog();
             }
         });
-
-
 
         // OnClickListener for the Delete Button,
         final Button deleteButton = (Button) findViewById(R.id.deleteButton);
@@ -148,8 +131,6 @@ public class EditToDoActivity extends AppCompatActivity {
             }
         });
 
-
-
         // OnClickListener for the Cancel Button,
         final Button cancelButton = (Button) findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +139,6 @@ public class EditToDoActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         final Button submitButton = (Button) findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -195,11 +175,6 @@ public class EditToDoActivity extends AppCompatActivity {
 
     }
 
-    @Subscribe
-    public void onEvent(ToDoItem event){
-        mItem = event;
-    }
-
 
     private Boolean getStatus() {
 
@@ -207,16 +182,11 @@ public class EditToDoActivity extends AppCompatActivity {
 
     }
 
-
     private String getToDoTitle() {
         return mEditTitle.getText().toString();
     }
 
     private String getToDoDescription(){return mEditDescription.getText().toString();}
-
-
-
-
 
     public void setDate(Date dateToSet){
 
@@ -229,7 +199,6 @@ public class EditToDoActivity extends AppCompatActivity {
         String hour    = "" + String.valueOf(cal.get(Calendar.HOUR_OF_DAY));
         String minute  = "" + String.valueOf(cal.get(Calendar.MINUTE));
 
-
         if (cal.get(Calendar.MONTH) < 10)
             mon = "0" + mon;
         if (cal.get(Calendar.DAY_OF_MONTH) < 10)
@@ -238,8 +207,6 @@ public class EditToDoActivity extends AppCompatActivity {
         String dateString = year + "-" + mon + "-" + day;
         dateView.setText(dateString);
 
-
-
         if (cal.get(Calendar.HOUR_OF_DAY) < 10)
             hour = "0" + hour;
         if (cal.get(Calendar.MINUTE) < 10)
@@ -247,12 +214,9 @@ public class EditToDoActivity extends AppCompatActivity {
 
         String timeString = hour + ":" + minute;
         timeView.setText(timeString);
-
     }
 
-
     // DialogFragment used to pick a ToDoItem deadline date
-
     public static class DatePickerFragment extends DialogFragment implements
             DatePickerDialog.OnDateSetListener {
 
@@ -281,7 +245,6 @@ public class EditToDoActivity extends AppCompatActivity {
     }
 
     // DialogFragment used to pick a ToDoItem deadline time
-
     public static class TimePickerFragment extends DialogFragment implements
             TimePickerDialog.OnTimeSetListener {
 
@@ -340,6 +303,4 @@ public class EditToDoActivity extends AppCompatActivity {
 
         timeString = hour + ":" + min;
     }
-
-
 }
