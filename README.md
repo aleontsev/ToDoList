@@ -1,9 +1,9 @@
-# ToDoList
+# ToDoList version 0.0.4
 
 ## Open-source project
 ## Let's make it better
 ## Simple ToDO List
-## Any suggestions and issues are [welcome]().
+## Any suggestions and issues are [welcome](https://github.com/aleontsev/ToDoList/issues).
 ## Link on [GooglePlay](https://play.google.com/store/apps/details?id=new.startup.todolist)
 
 <img src="https://user-images.githubusercontent.com/15144425/36074939-1fa340ce-0f58-11e8-8847-8dc16e9fb334.jpg" width="400">
