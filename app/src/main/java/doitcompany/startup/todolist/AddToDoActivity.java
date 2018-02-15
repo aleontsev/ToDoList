@@ -44,24 +44,24 @@ public class   AddToDoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_todo);
         //Set action bar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_add_todo);
+        Toolbar toolbar = findViewById(R.id.toolbar_add_todo);
         setSupportActionBar(toolbar);
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
 
-        mTitleText       = (EditText) findViewById(R.id.title);
-        mDescriptionText = (EditText) findViewById(R.id.description);
-        mStatusCheckBox  = (CheckBox) findViewById(R.id.completeCheckBox);
-        dateView         = (TextView) findViewById(R.id.date);
-        timeView         = (TextView) findViewById(R.id.time);
+        mTitleText       = findViewById(R.id.title);
+        mDescriptionText = findViewById(R.id.description);
+        mStatusCheckBox  = findViewById(R.id.completeCheckBox);
+        dateView         = findViewById(R.id.date);
+        timeView         = findViewById(R.id.time);
 
         // Set the default date and time
         setDefaultDateTime();
 
         // OnClickListener for the Date button, calls showDatePickerDialog() to
         // show the Date dialog
-        final Button datePickerButton = (Button) findViewById(R.id.date_picker);
+        final Button datePickerButton = findViewById(R.id.date_picker);
         datePickerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +71,7 @@ public class   AddToDoActivity extends AppCompatActivity {
 
         // OnClickListener for the Time button, calls showTimePickerDialog() to
         // show the Time Dialog
-        final Button timePickerButton = (Button) findViewById(R.id.time_picker);
+        final Button timePickerButton = findViewById(R.id.time_picker);
         timePickerButton.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -81,7 +81,7 @@ public class   AddToDoActivity extends AppCompatActivity {
         });
 
         // OnClickListener for the Cancel Button,
-        final Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        final Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +90,7 @@ public class   AddToDoActivity extends AppCompatActivity {
         });
 
         // Submit Button event
-        final Button submitButton = (Button) findViewById(R.id.submitButton);
+        final Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

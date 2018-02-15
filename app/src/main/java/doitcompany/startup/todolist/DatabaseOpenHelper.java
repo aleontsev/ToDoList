@@ -18,8 +18,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     final static String ALARM       = "alarm";
     //private static final String COMMA_SEP = ",";
 
-
-
     final static String[] columns = {_ID, TITLE, DESCRIPTION, STATUS, DATECREATION, DATEDEADLINE, ALARM};
 
     //request creating database

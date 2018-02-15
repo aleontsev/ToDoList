@@ -61,7 +61,7 @@ public class EditToDoActivity extends AppCompatActivity {
         setContentView(R.layout.edit_todo);
 
         //Set action bar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_todo);
+        Toolbar toolbar = findViewById(R.id.toolbar_edit_todo);
         setSupportActionBar(toolbar);
 
         // Get a support ActionBar corresponding to this toolbar
@@ -132,7 +132,7 @@ public class EditToDoActivity extends AppCompatActivity {
         });
 
         // OnClickListener for the Cancel Button,
-        final Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        final Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +140,7 @@ public class EditToDoActivity extends AppCompatActivity {
             }
         });
 
-        final Button submitButton = (Button) findViewById(R.id.submitButton);
+        final Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

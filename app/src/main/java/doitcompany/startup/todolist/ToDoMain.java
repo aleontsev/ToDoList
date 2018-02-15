@@ -220,11 +220,11 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
         mAdView.loadAd(adRequest);
         //ad-
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        FloatingActionButton addButton = (FloatingActionButton)findViewById(R.id.fab);
+        mRecyclerView = findViewById(R.id.my_recycler_view);
+        FloatingActionButton addButton = findViewById(R.id.fab);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
