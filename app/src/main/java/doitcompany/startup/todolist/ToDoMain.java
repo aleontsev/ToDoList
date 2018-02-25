@@ -214,7 +214,7 @@ public class ToDoMain extends AppCompatActivity implements SearchView.OnQueryTex
         //ad+
         // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, String.valueOf(R.string.app_ad_id));
-        mAdView = (AdView) findViewById(R.id.ad_view);
+        mAdView = findViewById(R.id.ad_view);
         AdRequest adRequest = new AdRequest.Builder().build();
         // Start loading the ad in the background.
         mAdView.loadAd(adRequest);
